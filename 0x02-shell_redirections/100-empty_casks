@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -empty | rev | cut --delimiter='\' --fields=1 | rev
+find . -empty | rev | cut --delimiter=$'\t' --fields=1 | rev
