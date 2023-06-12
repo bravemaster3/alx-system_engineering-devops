@@ -1,0 +1,2 @@
+#!/bin/bash
+cut --delimiter=: --fields=6-7 /etc/passwd | sort
