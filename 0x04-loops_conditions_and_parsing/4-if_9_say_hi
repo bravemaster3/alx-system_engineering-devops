@@ -3,9 +3,8 @@
 counter=1
 while [ $counter -le 10 ]
 do
-    if [ $counter != 9 ]; then
-        echo "Best School"
-    else
+    echo "Best School"
+    if [ $counter == 9 ]; then
         echo "Hi"
     fi
     ((counter++))
