@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# prints the content of directory one element per line
+for elem in *
+do
+    echo "$elem"
+done
