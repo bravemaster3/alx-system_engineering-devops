@@ -2,5 +2,5 @@
 # prints the content of directory one element per line
 for elem in *
 do
-    echo "$elem"
+    echo "$elem" | cut -d '-' -f2-
 done
