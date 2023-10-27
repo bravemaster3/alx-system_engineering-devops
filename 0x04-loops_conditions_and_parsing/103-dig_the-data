@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This script will parse a log file and group-count IP and HTTP status code
+cat ./apache-access.log | awk '{print $1, $9}' | sort | uniq -c | sort -r
