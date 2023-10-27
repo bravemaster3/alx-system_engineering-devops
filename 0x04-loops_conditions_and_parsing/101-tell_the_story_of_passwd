@@ -9,5 +9,6 @@ do
     COMMAND=$(echo "$line" | rev | cut -d ":" -f1 | rev | tr -d '\n')
     USER_ID=$(echo "$line" | cut -d ":" -f3 | tr -d '\n')
     PASSWORD=$(echo "$line" | cut -d ":" -f2 | tr -d '\n')
-    echo "The user $USERNAME is part of the $GROUP_ID gang, lives in $HOME_DIRECTORY and rides $COMMAND. $USER_ID's place is protected by the passcode $PASSWORD, more info about the user here: $USERNAME"
+    USER_INFO=$(echo "$line" | cut -d ":" -f5 | tr -d '\n')
+    echo "The user $USERNAME is part of the $GROUP_ID gang, lives in $HOME_DIRECTORY and rides $COMMAND. $USER_ID's place is protected by the passcode $PASSWORD, more info about the user here: $USER_INFO"
 done <"$file_path"
