@@ -3,11 +3,6 @@
 file_path="/etc/passwd"
 while IFS= read -r line
 do
-    exit_status=$?
-    if [ $exit_status -ne 0 ]; then
-        break
-    else
-        printf "%s" "$line" | cut -d ":" -f1,3 | tr '\n' ':'
-        printf "%s" "$line" | rev | cut -d ":" -f2 | rev
-    fi
+    printf "%s" "$line" | cut -d ":" -f1,3 | tr '\n' ':'
+    printf "%s" "$line" | rev | cut -d ":" -f2 | rev
 done <"$file_path"
