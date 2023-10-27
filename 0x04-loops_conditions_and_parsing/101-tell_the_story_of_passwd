@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#Tell story of password
+file_path="/etc/passwd"
+while IFS= read -r line
+do
+    USERNAME=$(echo "$line" | cut -d ":" -f1 | tr -d '\n')
+    GROUP_ID=$(echo "$line" | cut -d ":" -f4 | tr -d '\n')
+    HOME_DIRECTORY=$(echo "$line" | rev | cut -d ":" -f2 | rev)
+    COMMAND=$(echo "$line" | rev | cut -d ":" -f1 | rev)
+    USER_ID=$(echo "$line" | cut -d ":" -f3 | tr -d '\n')
+    PASSWORD=$(echo "$line" | cut -d ":" -f2 | tr -d '\n')
+    echo "The user $USERNAME is part of the $GROUP_ID gang, lives in $HOME_DIRECTORY and rides $COMMAND. $USER_ID's place is protected by the passcode $PASSWORD, more info about the user here: $USERNAME"
+done <"$file_path"
