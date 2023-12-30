@@ -4,7 +4,7 @@ $line_string = "Host 3.85.54.241\n\
     IdentityFile ~/.ssh/school\n\
     PasswordAuthentication no\n"
 
-file {"/home/vagrant/.ssh/config":
+file {"/etc/ssh/ssh_config":
     ensure => file,
     content => $line_string
 }
