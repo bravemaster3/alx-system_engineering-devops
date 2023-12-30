@@ -2,7 +2,7 @@
 
 $line_string = "Host 3.85.54.241\n\
     IdentityFile ~/.ssh/school\n\
-    PasswordAuthentication no"
+    PasswordAuthentication no\n"
 
 file {"/home/vagrant/.ssh/config":
     ensure => file,
