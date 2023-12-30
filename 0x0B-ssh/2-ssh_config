@@ -1,3 +1,3 @@
 Host 3.85.54.241
-    IdentifyFile ~/.ssh/school
+    IdentityFile ~/.ssh/school
     PasswordAuthentication no
