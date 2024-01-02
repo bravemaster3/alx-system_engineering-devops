@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Bash script that installs nginx on your web-01
+# Update the package index
+apt-get update
+# Install Nginx
+apt-get install -y nginx
+# Restart Nginx using the service command
+service nginx restart
+# Create the directory if it doesn't exist
+mkdir -p /var/www/html/
+# Create a basic HTML page with the content "Hello World!"
+echo "Hello World!" | tee /var/www/html/index.html > /dev/null
+
