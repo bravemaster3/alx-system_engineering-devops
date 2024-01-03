@@ -14,11 +14,11 @@ echo "Hello World!" | tee /var/www/html/index.html > /dev/null
 # Define the redirect URL
 redirect_url="https://www.youtube.com/watch?v=QH2-TGUlwu4"
 # Use sed to add the location block for the redirect
-sed -i '/server_name _;/a \
-\
-        location /redirect_me {\
-            return 301 '"$redirect_url"';\
-        }\
+sed -i '/server_name _;/a
+
+        location /redirect_me {
+            return 301 '"$redirect_url"';
+        }
 ' /etc/nginx/sites-available/default
 
 # Restart Nginx using the service command
