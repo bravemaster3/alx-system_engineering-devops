@@ -10,4 +10,3 @@ service nginx restart
 mkdir -p /var/www/html/
 # Create a basic HTML page with the content "Hello World!"
 echo "Hello World!" | tee /var/www/html/index.html > /dev/null
-

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Bash script that installs nginx on your web-01
+# And sets /redirect_me to redirect to another page
+# Update the package index
+apt-get update
+# Install Nginx
+apt-get install -y nginx
+# Create the directory if it doesn't exist
+mkdir -p /var/www/html/
+# Create a basic HTML page with the content "Hello World!"
+echo "Hello World!" | tee /var/www/html/index.html > /dev/null
+
+# Append the redirect directive to server_name_;
+# Define the redirect URL
+redirect_url="https://www.youtube.com/watch?v=QH2-TGUlwu4"
+# Use sed to add the location block for the redirect
+sed -i '/server_name _;/a \
+\
+        location /redirect_me {\
+            return 301 '"$redirect_url"';\
+        }\
+' /etc/nginx/sites-available/default
+
+# Restart Nginx using the service command
+service nginx restart
