@@ -10,6 +10,9 @@ mkdir -p /var/www/html/
 # Create a basic HTML page with the content "Hello World!"
 echo "Hello World!" | tee /var/www/html/index.html > /dev/null
 
+# Create a 404 HTML page with the content "Ceci n'est pas une page"
+echo "Ceci n'est pas une page" | tee /var/www/html/404.html > /dev/null
+
 # Append the redirect directive to server_name_;
 # Define the redirect URL
 redirect_url="https://github.com/bravemaster3"
