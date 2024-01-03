@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Bash script that installs nginx on your web-01
 # And sets /redirect_me to redirect to another page
+# and an error 404 page
 # Update the package index
 apt-get update
 # Install Nginx
@@ -28,6 +29,11 @@ printf '%s\n' "server {
     location /redirect_me {
         return 301 $redirect_url;
     }
+
+    location / {
+        try_files $uri $uri/ /404.html;
+    }
+
 }" > /etc/nginx/sites-available/default
 
 # Restart Nginx using the service command
