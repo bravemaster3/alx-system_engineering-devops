@@ -12,14 +12,20 @@ echo "Hello World!" | tee /var/www/html/index.html > /dev/null
 
 # Append the redirect directive to server_name_;
 # Define the redirect URL
-redirect_url="https://www.youtube.com/watch?v=QH2-TGUlwu4"
-# Use sed to add the location block for the redirect
-sed -i '/server_name _;/a
+redirect_url="https://github.com/bravemaster3"
+# Use printf to add the location block for the redirect
+printf '%s\n' "server {
+    listen 80;
+    listen [::]:80;
 
-        location /redirect_me {
-            return 301 '"$redirect_url"';
-        }
-' /etc/nginx/sites-available/default
+    server_name example.com;
+    root /etc/nginx/html;
+    index index.html index.htm;
+
+    location /redirect_me {
+        return 301 $redirect_url;
+    }
+}" > /etc/nginx/sites-available/default
 
 # Restart Nginx using the service command
 service nginx restart
