@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Fixing apache server not running in docker container
+# Get the id f the latest container
+container_id=$(docker ps -l -q)
+# Retart apache2 service inside the docker container
+sudo docker exec -it "$container_id" service apache2 restart
