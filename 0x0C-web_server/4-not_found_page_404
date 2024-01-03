@@ -30,8 +30,10 @@ printf '%s\n' "server {
         return 301 $redirect_url;
     }
 
+    error_page 404 /404.html;
+
     location / {
-        try_files $uri $uri/ /404.html;
+        try_files \$uri \$uri/ /404.html;
     }
 
 }" > /etc/nginx/sites-available/default
