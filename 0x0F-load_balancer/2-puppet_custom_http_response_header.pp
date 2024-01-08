@@ -16,18 +16,20 @@ file {'/var/www/html/index.html':
     content => 'Hello World!'
 }
 
-$config ="server {
+$host_name = "$(hostname)"
+
+file { '/etc/nginx/sites-available/default':
+    content => "
+server {
     listen 80;
     listen [::]:80;
 
-    add_header X-Served-By \"$(hostname)\";
+    add_header X-Served-By $host_name;
 
     root /var/www/html;
     index index.html index.htm;
-}"
-
-file {'/etc/nginx/sites-available/default':
-    content => $config
+}
+",
 }
 
 exec {'restart_nginx_service':
