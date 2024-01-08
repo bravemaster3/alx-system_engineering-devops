@@ -16,20 +16,9 @@ file {'/var/www/html/index.html':
     content => 'Hello World!'
 }
 
-$host_name = "$(hostname)"
-
-file { '/etc/nginx/sites-available/default':
-    content => "
-server {
-    listen 80;
-    listen [::]:80;
-
-    add_header X-Served-By $host_name;
-
-    root /var/www/html;
-    index index.html index.htm;
-}
-",
+exec {'substitute':
+    command => sudo sed -i "/listen 80 default_server;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default,
+    provider => shell
 }
 
 exec {'restart_nginx_service':
