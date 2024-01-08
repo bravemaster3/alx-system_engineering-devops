@@ -16,11 +16,22 @@ file {'/var/www/html/index.html':
     content => 'Hello World!'
 }
 
-exec {'substitute':
-    command => sudo sed -i "/listen 80 default_server;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default,
-    provider => shell
+$config="server {
+    listen 80;
+    listen [::]:80;
+
+    add_header X-Served-By $(HOSTNAME);
+
+    root /var/www/html;
+    index index.html index.htm;
+}"
+
+file {'/etc/nginx/sites-available/default':
+    content => $config
 }
 
 exec {'restart_nginx_service':
-    command => '/usr/sbin/service nginx restart'
+    command     => '/usr/sbin/service nginx restart',
+    refreshonly => true, # Only run this command if notified by another resource
+    subscribe   => [File['/etc/nginx/sites-available/default']], # Subscribe to changes in the Nginx configuration file
 }
