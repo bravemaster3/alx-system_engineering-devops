@@ -13,7 +13,7 @@ apt-get install -y haproxy
 # Use printf to add the location block for the redirect
 printf '%s\n' "
 frontend http
-    bind 0.0.0.0:800
+    bind 0.0.0.0:80
     default_backend http_servers" >> /etc/haproxy/haproxy.cfg
 
 printf '%s\n' "
