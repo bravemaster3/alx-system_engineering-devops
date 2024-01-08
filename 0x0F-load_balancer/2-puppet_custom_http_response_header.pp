@@ -33,6 +33,13 @@ $config ="server {
     location /redirect_me {
         return 301 https://github.com/bravemaster3;
     }
+
+    error_page 404 /404.html;
+
+    location /404 {
+        root /var/www/html;
+        internal;
+    }
 }"
 
 file {'/etc/nginx/sites-available/default':
