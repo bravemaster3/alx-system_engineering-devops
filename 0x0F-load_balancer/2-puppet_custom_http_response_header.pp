@@ -20,6 +20,7 @@ $config="server {
     listen 80;
     listen [::]:80;
 
+    server_name localhost localhost;
     add_header X-Served-By $(HOSTNAME);
 
     root /var/www/html;
