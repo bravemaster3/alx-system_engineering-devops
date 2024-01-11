@@ -18,7 +18,6 @@ then
     echo "Nginx installation completed successfully."
     # Configure Nginx to listen on port 80 for all active IPv4 IPs
     echo "Configuring Nginx to listen on port 80 for all active IPv4 IPs..."
-    sed -i '/listen 80 default_server;/a \\tlisten [::]:80 default_server;' /etc/nginx/nginx.conf
 
     # Add "listen 80 default_server;" if not present
     if ! grep -q 'listen 80 default_server;' /etc/nginx/nginx.conf; then
