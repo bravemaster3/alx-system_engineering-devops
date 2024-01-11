@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Script that checks if Nginx is installed. If not install it, and restart it anyways
-# Check if Nginx is already installed
 if command -v nginx &> /dev/null; then
     echo "Nginx is already installed."
     sudo service nginx restart
@@ -9,13 +8,13 @@ fi
 
 # Install Nginx
 echo "Installing Nginx..."
-sudo apt-get update
-sudo apt-get install -y nginx
+apt-get update
+apt-get install -y nginx
 
 # Check if the installation was successful
-if sudo apt-get install -y nginx; then
+if apt-get install -y nginx; then
     echo "Nginx installation completed successfully."
-    sudo service nginx restart
+    service nginx restart
 else
     echo "Error: Nginx installation failed."
 fi
