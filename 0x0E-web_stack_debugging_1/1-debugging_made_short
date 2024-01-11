@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Script that checks if Nginx is installed. If not install it, and restart it anyways
-sudo apt-get install -y nginx
-sudo service nginx restart
-sudo echo "" | sudo tee /run/nginx.pid
+apt-get install -y nginx
+service nginx restart
+chmod 000 /run/nginx.pid
