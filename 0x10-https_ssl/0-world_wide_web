@@ -10,11 +10,11 @@ retriever() {
 }
 if [[ $# -gt 1 ]]
 then
-    retriever $1 $2
+    retriever "$1" "$2"
 elif [[ $# -eq 1 ]]
 then
-    retriever $1 "www"
-    retriever $1 "lb-01"
-    retriever $1 "web-01"
-    retriever $1 "web-02"
+    retriever "$1" "www"
+    retriever "$1" "lb-01"
+    retriever "$1" "web-01"
+    retriever "$1" "web-02"
 fi
