@@ -40,7 +40,6 @@ frontend http
 
 backend http_servers
     balance roundrobin
-    acl is_holberton path -i /
-    http-response set-header X-Content-Source Holberton-School if is_holberton
+    http-request set-header X-Content-Source Holberton-School if { path -i -m beg / }
     server 422381-web-01 3.85.54.241:80 check
     server 422381-web-02 52.86.86.171:80 check
