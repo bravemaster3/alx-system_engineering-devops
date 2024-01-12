@@ -35,7 +35,7 @@ defaults
 
 frontend http
     bind *:80
-    bind *:443 ssl crt /etc/letsencrypt/live/www.bravemaster.tech/fullchain.pem
+    bind *:443 ssl crt /etc/letsencrypt/live/www.bravemaster.tech/bravemaster.tech.pem
     default_backend http_servers
 
 backend http_servers
