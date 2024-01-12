@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Bash script that displays info about domains and subdomains
+retriever() {
+    domain="$1"
+    subdomain="$2"
+    sub_dom="${subdomain}.${domain}"
+    ip=$(dig "$sub_dom" | grep -A1 'ANSWER SECTION:' | awk '{print $5}' | tr -d '\n')
+    record=$(dig "$sub_dom" | grep -A1 'ANSWER SECTION:' | awk '{print $4}' | tr -d '\n')
+    echo "The subdomain $subdomain is a $record record and points to $ip"
+}
+if [[ $# -gt 1 ]]
+then
+    retriever $1 $2
+elif [[ $# -eq 1 ]]
+then
+    retriever $1 "www"
+    retriever $1 "lb-01"
+    retriever $1 "web-01"
+    retriever $1 "web-02"
+fi
