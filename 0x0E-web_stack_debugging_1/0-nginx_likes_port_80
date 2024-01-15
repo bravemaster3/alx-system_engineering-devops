@@ -1,30 +1,5 @@
 #!/usr/bin/env bash
-# Script that checks if Nginx is installed. If not install it, and restart it anyways
-if command -v nginx &> /dev/null
-then
-    echo "Nginx is already installed."
-    sudo service nginx restart
-    exit 0
-fi
-
-# Install Nginx
-echo "Installing Nginx..."
-apt-get update
-apt-get install -y nginx
-
-# Check if the installation was successful
-if apt-get install -y nginx
-then
-    echo "Nginx installation completed successfully."
-    # Configure Nginx to listen on port 80 for all active IPv4 IPs
-    echo "Configuring Nginx to listen on port 80 for all active IPv4 IPs..."
-
-    # Add "listen 80 default_server;" if not present
-    if ! grep -q 'listen 80 default_server;' /etc/nginx/nginx.conf; then
-        sudo sed -i '/server_tokens off;/a \\tlisten 80 default_server;' /etc/nginx/nginx.conf
-    fi
-
-    service nginx restart
-else
-    echo "Error: Nginx installation failed."
-fi
+# Restoring sites-enabled from sites-available
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+/etc/init.d/nginx restart
