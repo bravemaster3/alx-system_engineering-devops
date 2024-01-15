@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Says not running but running
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-service nginx restart
+service nginx reload
 chmod 000 /run/nginx.pid
