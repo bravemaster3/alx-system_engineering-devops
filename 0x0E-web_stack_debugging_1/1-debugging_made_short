@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Script that checks if Nginx is installed. If not install it, and restart it anyways
-apt-get install -y nginx
+# Says not running but running
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart
 chmod 000 /run/nginx.pid
