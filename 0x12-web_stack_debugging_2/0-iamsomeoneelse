@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+user="$USER"
+sudo su "$1" -c 'whoami'
+sudo su "$user"
