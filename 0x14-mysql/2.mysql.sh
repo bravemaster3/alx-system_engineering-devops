@@ -12,9 +12,9 @@ $MYSQL_COMMAND "CREATE DATABASE IF NOT EXISTS tyrell_corp;"
 
 # Create table
 $MYSQL_COMMAND "USE tyrell_corp; CREATE TABLE IF NOT EXISTS nexus6(
-    name VARCHAR(255),
-    birthdate DATE
+    id INT PRIMARY KEY,
+    name VARCHAR(255)
 );"
 
 # Adding one entry to the table
-$MYSQL_COMMAND "USE tyrell_corp; INSERT INTO nexus6 (name, birthdate) VALUES ('John Doe', '1993-03-27');"
+$MYSQL_COMMAND "USE tyrell_corp; INSERT INTO nexus6 (id, name) VALUES ('1', 'Leon');"
