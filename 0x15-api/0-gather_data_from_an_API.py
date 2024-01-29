@@ -5,9 +5,9 @@ returns information about his/her TODO list progress.
 """
 
 if __name__ == "__main__":
+    import json
     import requests
     import sys
-    import json
 
     user_id = sys.argv[1]
     base_url = "https://jsonplaceholder.typicode.com/"
