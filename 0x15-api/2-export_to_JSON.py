@@ -14,7 +14,7 @@ if __name__ == "__main__":
     base_url = "https://jsonplaceholder.typicode.com/"
     user_info = requests.get(base_url+"users/"+user_id).json()
     todos = requests.get(base_url+"todos",
-                             params={"userId": user_id}).json()
+                         params={"userId": user_id}).json()
 
     list_tasks = [{"task": todo.get('title'),
                    "completed": todo.get("completed"),
