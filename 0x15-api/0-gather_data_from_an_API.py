@@ -24,4 +24,3 @@ if __name__ == "__main__":
           f"({n_compl}/{n_tasks}):")
     for task in compl_todos:
         print("\t", task.get("title"))
-    # print(user_todos)
