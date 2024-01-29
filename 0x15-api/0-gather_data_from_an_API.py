@@ -20,8 +20,8 @@ if __name__ == "__main__":
     n_tasks = len(all_todos)
     n_compl = len(compl_todos)
 
-    print(f"Employee {user_info['name']} is done with tasks"
+    print(f"Employee {user_info.get('name')} is done with tasks"
           f"({n_compl}/{n_tasks}):")
     for task in compl_todos:
-        print("\t", task["title"])
+        print("\t", task.get("title"))
     # print(user_todos)
