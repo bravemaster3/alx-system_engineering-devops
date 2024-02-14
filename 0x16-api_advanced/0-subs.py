@@ -12,7 +12,8 @@ def number_of_subscribers(subreddit):
     base_url = "https://www.reddit.com"
     end_point = "/subreddits/search"
 
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
+    headers = {'Accept': 'application/json',
+               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
                AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 \
                Safari/537.36'}
     req = requests.get('{}/r/{}/about/.json'.format(base_url, subreddit),
