@@ -15,14 +15,14 @@ def number_of_subscribers(subreddit):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
                AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 \
                Safari/537.36'}
-    req = requests.get(base_url+end_point + f".json?q={subreddit}&limit=1",
+    req = requests.get('{}/r/{}/about/.json'.format(base_url, subreddit),
                        headers=headers, allow_redirects=False)
-    result = req.json()
     if req.status_code != 200:
         return 0
-    n_subs = 0
-    if len(result['data']['children']) > 1 and \
-        result['data']['children'][0]['data']['display_name'] == subreddit:
-        n_subs = result['data']['children'][0]['data']['subscribers']
 
-    return n_subs
+    result = req.json()
+
+    if 'subscribers' in result['data']:
+        return result['data']['subscribers']
+    else:
+        return 0
