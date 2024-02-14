@@ -13,21 +13,13 @@ def number_of_subscribers(subreddit):
     end_point = "/subreddits/search"
 
     headers = {'Accept': 'application/json',
-               'User-Agent': ' '.join([
-                   'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-                   'AppleWebKit/537.36 (KHTML, like Gecko)',
-                   'Chrome/97.0.4692.71',
-                   'Safari/537.36',
-                   'Edg/97.0.1072.62'
-               ])}
+               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
+               AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 \
+               Safari/537.36'}
     req = requests.get('{}/r/{}/about/.json'.format(base_url, subreddit),
                        headers=headers, allow_redirects=False)
-    if req.status_code != 200:
-        return 0
 
-    result = req.json()
-
-    if 'subscribers' in result['data']:
-        return result['data']['subscribers']
+    if req.status_code == 200 and 'subscribers' in result['data']:
+        return req.json()['data']['subscribers']
     else:
         return 0
