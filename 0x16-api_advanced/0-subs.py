@@ -19,7 +19,7 @@ def number_of_subscribers(subreddit):
     req = requests.get('{}/r/{}/about/.json'.format(base_url, subreddit),
                        headers=headers, allow_redirects=False)
 
-    if req.status_code == 200 and 'subscribers' in result['data']:
+    if req.status_code == 200 and 'subscribers' in req.json()['data']:
         return req.json()['data']['subscribers']
     else:
         return 0
