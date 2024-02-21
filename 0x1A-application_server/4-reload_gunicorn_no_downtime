@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Specify the path to your Gunicorn systemd service file
+SERVICE_NAME="gunicorn.service"
+
+# Get the number of workers currently running
+CURRENT_WORKERS=$(sudo systemctl show -p MainPID --value $SERVICE_NAME)
+echo "Current number of workers: $CURRENT_WORKERS"
+
+echo "Current number of workers: $CURRENT_WORKERS"
+
+# Perform a graceful restart for a subset of workers
+sudo kill -s TERM "$CURRENT_WORKERS"
+
+# Wait for a short duration to allow workers to finish processing ongoing requests
+sleep 10
+
+# Check if the restart was successful
+NEW_WORKERS=$(sudo systemctl show -p MainPID --value $SERVICE_NAME)
+if [ "$NEW_WORKERS" != "$CURRENT_WORKERS" ]; then
+    echo "Workers restarted successfully."
+else
+    echo "Failed to restart workers. Please check logs for more information."
+fi
