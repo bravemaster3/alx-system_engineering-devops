@@ -8,11 +8,3 @@ file { '/etc/security/limits.d/holberton.conf':
   group   => 'root',
   mode    => '0644',
 }
-
-# Ensure changes take effect immediately
-exec { 'reload_pam':
-  command     => 'sysctl -p',
-  path        => ['/bin', '/usr/bin', '/sbin', '/usr/sbin'],
-  subscribe   => File['/etc/security/limits.d/holberton.conf'],
-  refreshonly => true,
-}
